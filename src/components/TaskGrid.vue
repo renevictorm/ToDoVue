@@ -1,7 +1,7 @@
 <template>
     <div class="task-grid">
         <template v-if="tasks.length">
-            <task v-for="(task,i) in tasks" :key="task.name" @taskDeleted="$emit('taskDeleted', i)" :task="task"> </task>
+            <task v-for="(task,i) in tasks" :key="task.name" @taskChanged="$emit('taskChanged',i)" @taskDeleted="$emit('taskDeleted', i)" :task="task"> </task>
         </template>
         <p v-else class="no-task"> Sua vida está em dia );</p>
     </div>
