@@ -27,6 +27,14 @@ export default {
 			return Math.round(done / total * 100 || 0)
 		}
 	},
+	watch:{
+		tasks:{
+			deep:true,
+			handler(){
+				localStorage.setItem('tasks', JSON.stringify(this.tasks))
+			}
+		}
+	},
 	methods:{
 		changeTask(i){
 			this.tasks[i].pending = !this.tasks[i].pending		
@@ -45,6 +53,11 @@ export default {
 			}
 		
 		}
+	},
+	created(){
+		const json = localStorage.getItem('tasks')
+		const array = JSON.parse(json)
+		this.tasks = Array.isArray(array) ? array : []
 	}
 
 }
